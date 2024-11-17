@@ -2,25 +2,28 @@ import requests
 import json
 
 response = requests.get("https://api.spacexdata.com/v5/launches")
-# print(response.status_code)
 
-
-def formatPrint(obj):
+def raw_data(obj):
     text = json.dumps(obj, sort_keys=True, indent=4)
+    return text
 
-formatPrint(response.json())
-text = json.dumps(response.json(), sort_keys=True, indent=4)
+item_dict = json.loads(raw_data(response.json()))
 
-item_dict = json.loads(text)
+# Find multiple occurences of a given attribute
+def concat(attr, split_start = None, split_end = None):
+    years_list = []
+    for x in item_dict:
+        years_list.append(x[attr][split_start:split_end])
+    
+    year_dict = {}
+    for year in years_list:
+        year_dict[year] = years_list.count(year)
 
-years_list = []
-for x in item_dict:
-    years_list.append(x["date_local"][:4])
+    return year_dict
 
-year_dict = {}
-for year in years_list:
-    year_dict[year] = years_list.count(year)
+# def format_output(data = None):
+#     print(concat("launchpad").keys())
 
-
-print(year_dict)
-# print (len(item_dict))
+# format_output()
+print(concat("launchpad"))
+print(concat("date_local", 0, 4))
