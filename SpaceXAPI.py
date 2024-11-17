@@ -11,15 +11,17 @@ item_dict = json.loads(raw_data(response.json()))
 
 # Find multiple occurences of a given attribute
 def concat(attr, split_start = None, split_end = None):
-    years_list = []
+    # add all occurences of the selected attribute to a list 
+    attr_list = []
     for x in item_dict:
-        years_list.append(x[attr][split_start:split_end])
+        attr_list.append(x[attr][split_start:split_end])
     
-    year_dict = {}
-    for year in years_list:
-        year_dict[year] = years_list.count(year)
+    # create a dictionary with the attribute key and number of occurences
+    attr_dict = {}
+    for y in attr_list:
+        attr_dict[y] = attr_list.count(y)
 
-    return year_dict
+    return attr_dict
 
 # def format_output(data = None):
 #     print(concat("launchpad").keys())
