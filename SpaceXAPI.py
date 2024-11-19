@@ -1,6 +1,7 @@
 import requests
 import json
 import re
+import csv
 
 def process_status_code(status):
     str_status = str(status)
@@ -31,10 +32,27 @@ def count_occurrences(attr, split_start = None, split_end = None):
 
     return attr_dict
 
+# save values to csv file
+def write_csv(row_names,data_dict):
+    writer.writerow(row_names);
+    for key, value in data_dict:
+        writer.writerow((key, value));
+
+# API call
 response = requests.get("https://api.spacexdata.com/v5/launches")
+# response code
 process_status_code(response.status_code)
+
 item_dict = json.loads(raw_data(response.json()))
 
+# output data
 print(count_occurrences("launchpad"))
 print(count_occurrences("date_local", 0, 4))
+# csv
+writer = csv.writer(open("./spacex_csv.csv", 'w'))
+write_csv(('launchSite', 'launchNum'), count_occurrences("launchpad").items())
+write_csv(('year', 'launchNum'), count_occurrences("date_local", 0, 4).items())
+
+
+
 
