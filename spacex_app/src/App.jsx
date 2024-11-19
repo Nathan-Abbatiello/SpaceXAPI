@@ -1,6 +1,6 @@
+import Display from './components/Display';
 import rocket from './rocket.svg';
 import './App.css';
-import Display from './Display';
 
 function App() {
   return (
