@@ -1,13 +1,13 @@
+import spacexAPI from "./spacexAPI";
+spacexAPI();
+
 function Body() {
   var csvData = [];
   var msgContent = (
     <>
       <div className="row align-items-center">
         <div className="col">
-          <h1>Import CSV to display data</h1>
-          <button type="button" class="btn btn-primary btn-lg">
-            Import CSV
-          </button>
+          <h1>No Data</h1>
         </div>
       </div>
     </>
