@@ -1,16 +1,24 @@
 import requests
 import json
+import re
 
-response = requests.get("https://api.spacexdata.com/v5/launches")
+def process_status_code(status):
+    str_status = str(status)
+    if (re.search('2..', str_status)):
+        print("Successfull api call")
+    elif (re.search('4..', str_status)):
+        print("Failed Client Error")
+    elif (re.search('5..', str_status)):
+        print("Failed Server Error")
+    else:
+        print("Unknown error")
 
 def raw_data(obj):
     text = json.dumps(obj, sort_keys=True, indent=4)
     return text
 
-item_dict = json.loads(raw_data(response.json()))
-
 # Find multiple occurences of a given attribute
-def concat(attr, split_start = None, split_end = None):
+def count_occurrences(attr, split_start = None, split_end = None):
     # add all occurences of the selected attribute to a list 
     attr_list = []
     for x in item_dict:
@@ -23,9 +31,10 @@ def concat(attr, split_start = None, split_end = None):
 
     return attr_dict
 
-# def format_output(data = None):
-#     print(concat("launchpad").keys())
+response = requests.get("https://api.spacexdata.com/v5/launches")
+process_status_code(response.status_code)
+item_dict = json.loads(raw_data(response.json()))
 
-# format_output()
-print(concat("launchpad"))
-print(concat("date_local", 0, 4))
+print(count_occurrences("launchpad"))
+print(count_occurrences("date_local", 0, 4))
+
