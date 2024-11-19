@@ -1,8 +1,7 @@
 import spacexAPI from "./spacexAPI";
-spacexAPI();
 
 function Body() {
-  var csvData = [];
+  var csvData = spacexAPI();
   var msgContent = (
     <>
       <div className="row align-items-center">
@@ -29,6 +28,14 @@ function Body() {
                   <h1>Number of Launches</h1>
                 </div>
               </div>
+
+              {csvData.forEach((item) => {
+                <div className="row align-items-center">
+                  <p onClick={(e) => console.log(item)} key={item}>
+                    {item}
+                  </p>
+                </div>;
+              })}
             </div>
           </div>
 
