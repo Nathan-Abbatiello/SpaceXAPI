@@ -2,6 +2,7 @@ import React from "react";
 import axios from "axios";
 import { useState } from "react";
 
+// calls spacex API and returns populated rows with data
 export default function SpaceXAPIget(props) {
   const [dataTest, setData] = useState("");
 
@@ -24,12 +25,16 @@ export default function SpaceXAPIget(props) {
     </>
   );
 }
+
+// returns an object (attribute: attribute count)
 function countOccurrences(data, attr) {
   var attrArray = [];
+  // add all occurences of the selected attribute to an array
   for (let x = 0; x < data.length; x++) {
     attrArray.push(data[x][attr].split("-", 1));
   }
 
+  // create an object with the attribute key and number of occurences
   var count = {};
   attrArray.forEach((ele) => {
     if (count[ele]) {
