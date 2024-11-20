@@ -22,7 +22,7 @@ def raw_data(obj):
 def count_occurrences(attr, split_start = None, split_end = None):
     # add all occurences of the selected attribute to a list 
     attr_list = []
-    for x in item_dict:
+    for x in items:
         attr_list.append(x[attr][split_start:split_end])
     
     # create a dictionary with the attribute key and number of occurences
@@ -40,10 +40,14 @@ def write_csv(row_names,data_dict):
 
 # API call
 response = requests.get("https://api.spacexdata.com/v5/launches")
+
+# uncomment to print full api response data
+# print (raw_data(response.json()))
+
 # response code
 process_status_code(response.status_code)
 
-item_dict = json.loads(raw_data(response.json()))
+items = json.loads(raw_data(response.json()))
 
 # output data
 print(count_occurrences("launchpad"))
