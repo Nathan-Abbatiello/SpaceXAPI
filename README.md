@@ -17,6 +17,7 @@ Run using python3 enabled cmd or python cmd
 This is a React application which pulls an API using Axios, this is then processed and displayed to the web application.
 
 **Run:**
+Install Dependencies: npm
 
 Using dev files: 
 ```
@@ -27,5 +28,6 @@ npm start
 Using build file:
 ```
 cd spacex_app
+npm install -g serve
 serve -s build
 ```
