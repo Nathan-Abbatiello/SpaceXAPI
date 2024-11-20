@@ -1,5 +1,5 @@
-# SpaceXAPI
-Receive data from SpaceX API 
+# SpaceXAPI Project
+Retrieves data from SpaceX API for number of launches per launch pad and number of launches per year. 
 
 # SpaceXAPI.py
 This is a tool used for running with python3, it will retrieve the api data, give processed status code responses, write the formatted data to the command line and save the most recent formatted data to a csv file.
