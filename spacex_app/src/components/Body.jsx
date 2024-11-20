@@ -1,9 +1,7 @@
-import spacexAPI from "./spacexAPI";
-import React from "react";
-
+import SpacexAPIget from "./SpaceXAPIget";
 function Body() {
-  console.log(spacexAPI("launchpad"));
-  console.log(spacexAPI("date_local", true));
+  // console.log(spacexAPI.dataTest);
+  console.log(SpacexAPIget("date_local", true));
 
   var launchSiteData = {
     "5e9e4502f5090995de566f86": 5,
@@ -97,17 +95,5 @@ function Body() {
     </>
   );
 }
-
-/* <div className="col">
-  {dataAPI.map((item) => (
-    <li
-      classNameName="list-item"
-      onClick={(e) => console.log(item)}
-      key={item}
-    >
-      {item}
-    </li>
-  ))}
-  </div> */
 
 export default Body;
